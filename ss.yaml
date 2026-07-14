@@ -40,3 +40,23 @@ spec:
 
         - name: MYSQL_ROOT_PASSWORD
           value: "root"
+
+...
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  labels:
+    app: myapp
+
+spec:
+  clusterIP: None
+  selector:
+    app: myapp
+
+  ports:
+  - name: mysql-port
+    protocol: TCP
+    port: 3306
+    targetPort: 3306
